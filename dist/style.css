@@ -1,0 +1,67 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+main{
+	display: grid;
+	grid-template-columns: 20em auto;
+	color: red;
+}
+main aside{
+	grid-column: 1;
+	grid-row: 1/4;
+	background-color: #fafafa;
+	border-right: 1px solid green;
+}
+main .aside-content{
+		max-width: 20em;
+	margin: 0 auto;
+		padding: 1em;
+	text-align: center;
+
+
+}
+main aside ul{
+	list-style-type: none;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
+main aside ul li{
+	margin: .4em .5em;
+}
+main section{
+	grid-column: 2;
+	margin: 1em 0em 0em 2em;
+	background-color: beige;
+	padding: 1em 1em;
+	display: flex;
+	flex: 1 1 30%;
+	flex-wrap: wrap;
+}
+main section .todo{
+	background-color: #ff06;
+	border-radius: 5px;
+	padding: .5em;
+	margin: .3em .2em;
+	flex: 30%;
+	text-align: center;
+}
+main section .todo input{
+	margin: 1em auto;
+	display: flex;
+	flex-direction: column;
+}
+.fields{
+	display: flex;
+	flex-direction: column;
+	margin: 1em auto;
+	width: 60%;
+}
+.fields-hidden{
+	display: none;
+}
+.fields input{
+	margin: 0.5em 0em;
+}
