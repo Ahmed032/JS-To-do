@@ -1,5 +1,5 @@
 import {toDos, section, dateField, titleDesc, titleField} from "./globals.js";
-import {edit} from "./editTodo.js";
+import {edit, editFields} from "./editTodo.js";
 let add = document.querySelector("section .add-todo");
 
 let toDosArrh3 = [];
@@ -7,6 +7,7 @@ let toDosArrp = [];
 let toDosSp = [];
 let div = [];
 let buttons = [];
+let fields;
 
 function renderTodos(){
 	for(let i = 0; toDos.length > i; i++){
@@ -34,8 +35,10 @@ function renderTodos(){
 		div[i].setAttribute("data-src", i);
 		
 		console.log(buttons[i]);
-		toDosArrh3[i].addEventListener("dblclick", function(){edit(this, "h3");})
-		toDosArrp[i].addEventListener("dblclick", function(){edit(this, "p");})
+		fields = [toDosArrh3[i], toDosArrp[i], toDosSp[i]];
+		for(let r = 0; fields.length > r; r++){
+			fields[r].addEventListener("dblclick", function(){edit(this, fields[r].nodeName.toLowerCase());})
+		}
 	}
 }
 
@@ -76,4 +79,4 @@ function addToDos(){
 }
 
 
-export {renderTodos, addToDos, add};
+export {renderTodos, addToDos, add, buttons};

@@ -48,7 +48,7 @@ main section .todo{
 	flex: 30%;
 	text-align: center;
 }
-main section .todo input{
+main section .todo .fields input{
 	margin: 1em auto;
 	display: flex;
 	flex-direction: column;
