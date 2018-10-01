@@ -47,6 +47,8 @@ main section .todo{
 	margin: .3em .2em;
 	flex: 30%;
 	text-align: center;
+	max-width: 17em;
+	position: relative;
 }
 main section .todo .fields input{
 	margin: 1em auto;
@@ -64,4 +66,111 @@ main section .todo .fields input{
 }
 .fields input{
 	margin: 0.5em 0em;
+}
+.expand{
+	overflow: hidden;
+	height: 3em;
+	transition: height 1s;
+}
+.expand:hover ~ #title{
+	height: 7em;
+}
+.priorty-low{
+	background-color: green;
+}
+.priorty-medium{
+	background-color: yellow;
+}
+.priorty-high{
+	background-color: red;
+}
+.todo-buttons-wrapper{
+	display: flex;
+	justify-content: space-around;
+	margin: .3em 0;
+	border-radius: 2px;
+	width: 50%;
+	padding: 1em;
+	margin: 0 auto;
+	max-width: 10em;
+}
+.todo-buttons-wrapper button{
+	outline: none;
+	padding: .7em;
+	border: 1px solid white;
+	border-radius: 7px;
+	text-transform: capitalize;
+	font-weight: 700;
+	color: black;
+	cursor: pointer;
+	margin: 0 .3em;
+}
+form{
+	margin: .6em 0;
+	display: flex;
+	flex-direction: column;
+	padding: 1em;
+	background-color: #ffffff57;
+}
+form input{
+	margin: .5em 0;
+	font-size: 1em;
+	font-weight: 400;
+	border: 1px solid #b3b3b3;
+	padding: .2em .5em;
+	outline: none;
+	border-radius: 10px;
+	text-transform: capitalize;
+}
+form input:focus{
+	border: 1px solid rgba(82,168,236,.8);
+	box-shadow: 0 1px 1px rgba(0,0,0,.075) inset,0 0 8px rgba(82,168,236,.6);
+}
+form .add-todo{
+	cursor: pointer;
+	background-color: white;
+	font-weight: 700;
+	letter-spacing: .3px;
+}
+form .add-todo:hover{
+	background-color: #ececec;
+}
+.dropDowndots{
+	text-align: right;
+	font-size: 1.4em;
+	color: #000000e0;
+	display: inline-block;
+	margin-left: 11em;
+}
+.dropDowndots::after{
+	content: "\2807";
+	cursor: pointer;
+}
+.dropDowndots::after:hover{
+	color: #000000ab;
+}
+.dropdown-visible{
+	padding: .2em;
+	background-color: white;
+	border: 1px solid grey;
+	position: absolute;
+	text-align: center;
+	max-width: 5em;
+	font-size: .6em;
+	top: 2.5em;
+	right: 2em;
+}
+.dropdown-invisible{
+	display: none;
+}
+.dropdown-visible span{
+	display: flex;
+	justify-content: center;
+	margin: .3em 0;
+	padding: .3em 0;
+	cursor: pointer;
+	font-weight: 700;
+}
+.dropdown-visible span:hover{
+	background-color: #efefeffa;
 }

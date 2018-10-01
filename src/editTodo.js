@@ -21,21 +21,24 @@ function edit(current, type){
 
 	console.log(index);
 
-	buttons[index].addEventListener("click", function(){editFields(this, current);}, false);
-	console.error("Howm any times");
+	buttons[index].addEventListener("click", function(){editFields(this, current, type);}, false);
 
 }
-function editFields(current, clicked){
-	let editedValue = button.value;
+function editFields(current, clicked, type){
+	let editedValues = [];
+	editedValues.push(button);
 	let index = current.getAttribute("button-src");
 
-	button.classList.add("fields-hidden");
-
-	console.log("Edited value: " + editedValue);
-
-	toDos[index].title = editedValue;
-	alert("New value" + editedValue);
-	newClass1.innerHTML = editedValue;
-	clicked.classList.remove("fields-hidden");
+	for(let i = 0; editedValues.length > i; i++){
+		editedValues[i].classList.add("fields-hidden");
+		console.log("Edited value: " + editedValues[i].value);
+		if(type === "h3"){
+			toDos[index].title = editedValues[i].value;
+		}else if(type === "p"){
+			toDos[index].description = editedValues[i].value;
+		}
+		newClass1.innerHTML = editedValues[i].value;
+		clicked.classList.remove("fields-hidden");
+	}
 }
 export {edit, editFields};
