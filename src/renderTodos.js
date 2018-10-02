@@ -1,10 +1,10 @@
-import {toDos, section, dateField, descField, titleField, priorityField} from "./globals.js";
+import {toDos, section, dateField, descField, titleField, priorityField, projects} from "./globals.js";
 import {edit, editFields} from "./editTodo.js";
 import {expand} from "./expand.js";
 import {editTodoFields} from "./editFields.js";
 import {deleteTodo} from "./deleteTodo.js";
 import {changePriorty} from "./changePriorty.js";
-import {dropDown} from "./dropDown.js";
+import {moveProject, prepDropdown, dropDown} from "./dropDown.js";
 let add = document.querySelector("section .add-todo");
 
 let toDosArrh3 = [];
@@ -17,6 +17,8 @@ let deleteButtons = [];
 let priorityButtons = [];
 let buttonsDiv = [];
 let dropDowndots = [];
+let spans = [];
+let invisibleDivs = [];
 
 function renderTodos(){
 	for(let i = 0; toDos.length > i; i++){
@@ -37,7 +39,6 @@ function renderTodos(){
 		expandClass[i].classList.add("expand");
 		expandClass[i].classList.add("values");
 		dropDowndots[i].classList.add("dropDowndots");
-		dropDowndots[i].classList.add("active-downdots");
 
 
 		div[i].append(dropDowndots[i]);
@@ -68,18 +69,13 @@ function renderTodos(){
 		
 		
 
-		if(toDos[i].priorty === "low"){
-			priorityButtons[i].classList.add("priorty-"+toDos[i].priorty);
-		}else if(toDos[i].priorty === "medium"){
-			priorityButtons[i].classList.add("priorty-"+toDos[i].priorty);
-		}else if(toDos[i].priorty === "high"){
-			priorityButtons[i].classList.add("priorty-"+toDos[i].priorty);
-		}
+		assignPriority(i);
 
 	//	for(let r = 0; fields.length > r; r++){
 		//	fields[r].addEventListener("dblclick", function(){edit(this, fields[r].nodeName.toLowerCase());})
 	//	}
 	
+		prepDropdown(i);	
 	
 		toDosArrh3[i].classList.add("title");
 		toDosArrp[i].classList.add("desc");
@@ -155,9 +151,17 @@ function addToDos(){
 	deleteButton.addEventListener("click", function(){ deleteTodo(this); });
 	h3.addEventListener("click", function(){expand(this)});
 	priorityButton.addEventListener("click", function(){ changePriorty(this); });
-
-
+}
+function assignPriority(i){
+	if(toDos[i].priorty === "low"){
+		priorityButtons[i].classList.add("priorty-"+toDos[i].priorty);
+	}else if(toDos[i].priorty === "medium"){
+		priorityButtons[i].classList.add("priorty-"+toDos[i].priorty);
+	}else if(toDos[i].priorty === "high"){
+		priorityButtons[i].classList.add("priorty-"+toDos[i].priorty);
+	}
 }
 
 
-export {renderTodos, addToDos, add, buttons};
+
+export {renderTodos, addToDos, add, buttons, spans, invisibleDivs, dropDowndots};

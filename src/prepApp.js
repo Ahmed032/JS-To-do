@@ -27,8 +27,8 @@ function newToDo(){
 	let project = new Project("personal");
 	let project2 = new Project("work");
 	projects.push(project, project2);
-	window[project.name] = new Set;
-	window[project2.name] = new Set;
+	window[project.name] = [];
+	window[project2.name] = [];
 	console.log(projects);
 })();
 export default newToDo;

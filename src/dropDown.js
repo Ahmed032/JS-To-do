@@ -1,32 +1,31 @@
-let invisibleDiv;
-import {projects, personalProjects, projectNames} from "./globals.js";
+import {projects} from "./globals.js";
+import{ spans, invisibleDivs, dropDowndots} from "./renderTodos.js";
 function dropDown(current){
-    console.log(current);
-    if(!current.classList.contains("active-downdots")){
-        invisibleDiv.classList.remove("dropdown-visible")
-        invisibleDiv.classList.add("dropdown-invisible")
-        current.classList.add("active-downdots");
-        invisibleDiv.remove();
+	console.log(current);
+	let invisibleDiv = current.querySelector(".dropDown-content");
+	console.log(invisibleDiv);
+	if(!current.classList.contains("active-downdots")){
+       invisibleDiv.classList.remove("dropdown-invisible");
+       invisibleDiv.classList.add("dropdown-visible");
+       current.classList.add("active-downdots");
     }else{
-        invisibleDiv = document.createElement("div");
-        let span = document.createElement("span");
-        span.append("Move to project");
-        invisibleDiv.classList.add("dropdown-visible");
-        invisibleDiv.append(span);
-        current.append(invisibleDiv);
+    	invisibleDiv.classList.add("dropdown-invisible");
+    	invisibleDiv.classList.remove("dropdown-visible");
         current.classList.remove("active-downdots");
-        prepDropdown(current);
     }
 }
-let spans = [];
-function prepDropdown(current){
-    for(let i = 0; projects.length > i; i++){
-        spans[i] = document.createElement("span");
-        spans[i].append(projects[i].name);
-        invisibleDiv.append(spans[i]);
-        spans[i].addEventListener("click", function(){moveProject(this);}, false);
-    }
+function prepDropdown(counter){
+		invisibleDivs[counter] = document.createElement("div");
+	    for(let p = 0; projects.length > p; p++){
+    	   spans[p] = document.createElement("span");
+    	   spans[p].append(projects[p].name);
+    	   invisibleDivs[counter].append(spans[p]);
+    	   invisibleDivs[counter].classList.add("dropdown-invisible", "dropDown-content");
+    	   dropDowndots[counter].append(invisibleDivs[counter]);
+    	   spans[p].addEventListener("click", function(){moveProject(this);}, false);
+		 }
 }
+
 function moveProject(current){
     let name = current.innerHTML;
     let theDiv = current.parentNode.parentNode.parentNode;
@@ -35,4 +34,4 @@ function moveProject(current){
     window[name].push(theDiv);
 }
 
-export {dropDown};
+export {moveProject, prepDropdown, dropDown};
